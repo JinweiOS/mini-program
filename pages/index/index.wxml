@@ -1,37 +1,12 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="usermotto">
-    <view class="page-body">
-      <view class="page-section page-section-spacing swiper">
-      <swiper indicator-dots="{{indicatorDots}}"
-        autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-        <block wx:for="{{background}}" wx:key="*this">
-          <swiper-item>
-            <view class="swiper-item {{item}}"></view>
-          </swiper-item>
-        </block>
-      </swiper>
-      <image src="http://static.runoob.com/images/demo/demo2.jpg"></image>
-    </view>
-    <view class="page-section page-section-gap">
-      <map
-        style="width: 100%; height: 300px;"
-        latitude="{{latitude}}"
-        longitude="{{longitude}}"
-      >
-        <cover-view class="cover-view">
-          <cover-view class="container">
-            <cover-view class="flex-wrp" style="flex-direction:row;">
-              <cover-view class="flex-item demo-text-1"></cover-view>
-              <cover-view class="flex-item demo-text-2"></cover-view>
-              <cover-view class="flex-item demo-text-3"></cover-view>
-            </cover-view>
-          </cover-view>
-        </cover-view>
-      </map>
-    </view>
+  <view wx:for="{{tempData}}">
+    <div bindtap="copyToboard" data-index="{{item}}">
+      <text>第{{index + 1}}条</text><input value="{{item}}" />
+    </div>
   </view>
-    <button bindtap="clickMe">点击我</button>
+  <view class="content">
+    <textarea bindinput="needToShare" value="{{msg}}" class="text-layout" placeholder="请输入剪贴板的内容" auto-focus />
   </view>
-  <div>安徽</div>
+  <button bindtap="saveToServer" >添加剪贴板内容</button>
 </view>

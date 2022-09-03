@@ -4,60 +4,60 @@ const app = getApp()
 
 Page({
   data: {
-    background: ['demo-text-1', 'demo-text-2', 'demo-text-3'],
-    indicatorDots: true,
-    vertical: false,
-    autoplay: false,
-    interval: 2000,
-    duration: 500,
-    motto: 'Hello World',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    canIUseGetUserProfile: false,
-    canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName'), // 如需尝试获取用户信息可改为false
-    latitude: 23.099994,
-    longitude: 113.324520,
-  },
-  // 事件处理函数
-  bindViewTap() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
+    msg: '',
+    tempData: []
   },
   onLoad() {
-    if (wx.getUserProfile) {
-      this.setData({
-        canIUseGetUserProfile: true
-      })
-    }
+    this.getMsg()
   },
-  clickMe() {
-    setTimeout(() => {
-      this.setData({
-        motto: '哈哈'
-      })
-    }, 3000)
+  copyToboard(event) {
+    const data = event.currentTarget.dataset.index
+    wx.setClipboardData({
+      data,
+    })
   },
-  getUserProfile(e) {
-    // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
-    wx.getUserProfile({
-      desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-      success: (res) => {
-        console.log(res)
+  needToShare(event) {
+    console.log(event.detail);
+    // 把需要添加到剪贴板的内容后端本地变量
+    this.setData({
+      msg: event.detail.value
+    })
+  },
+  saveToServer() {
+    wx.request({
+      url: 'http://localhost:3000/set',
+      method: 'GET',
+      // 由于header部分不允许出现中文字符，所以做一次urlencode
+      header: {
+        content: encodeURIComponent(this.data.msg)
+      },
+      success: (result) => {
+        console.log(result.data)
         this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
+          tempData: result.data.data,
+          msg: ''
         })
       }
     })
   },
-  getUserInfo(e) {
-    // 不推荐使用getUserInfo获取用户信息，预计自2021年4月13日起，getUserInfo将不再弹出弹窗，并直接返回匿名的用户个人信息
-    console.log(e)
+  clearMsg() {
     this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
+      msg: ''
+    })
+  },
+  getMsg() {
+    wx.request({
+      url: 'http://localhost:3000/get',
+      method: 'GET',
+      header: {
+        content: this.data.msg
+      },
+      success: (result) => {
+        console.log(result.data)
+        this.setData({
+          tempData: result.data.data
+        })
+      }
     })
   }
 })
