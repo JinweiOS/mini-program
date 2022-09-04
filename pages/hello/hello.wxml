@@ -1,3 +1,4 @@
-<form-page>
-<div>哈哈哈</div>
-</form-page>
+<sl-text class="sl-text" msg="hello，我的小组件" bind:godAction="receiveMoney" />
+<view>
+  <h1>这是我父组件收到的钱：{{count}}</h1>
+</view>

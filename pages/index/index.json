@@ -1,5 +1,9 @@
 {
   "usingComponents": {
-    "tab-bar": "weui-miniprogram/tabbar/tabbar"
+    "tab-bar": "weui-miniprogram/tabbar/tabbar",
+    "mp-form-page": "weui-miniprogram/form-page/form-page",
+    "mp-form": "weui-miniprogram/form/form",
+    "checkbox-group": "weui-miniprogram/checkbox-group/checkbox-group",
+    "checkbox": "weui-miniprogram/checkbox/checkbox"
   }
 }

@@ -1,5 +1,7 @@
 {
   "usingComponents": {
-    "form-page": "weui-miniprogram/form-page/form-page"
+    "form-page": "weui-miniprogram/form-page/form-page",
+    "form": "weui-miniprogram/form/form",
+    "sl-text": "/components/first/first"
   }
 }

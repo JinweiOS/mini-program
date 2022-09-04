@@ -4,13 +4,57 @@
 
 Page({
   data: {
+    isAgree: true,
     msg: '',
     needToTransfor: {
       msg: '爱'
     },
     tempData: []
   },
+  submitForm() {
+    wx.checkSession({
+      success: (res) => {
+        console.log(res)
+      },
+      fail: (res) => {
+        console.log(res)
+      }
+    })
+    // if (wx.getStorageSync('token')) {
+    //   return;
+    // }
+    wx.login(
+      {
+        success: (res) => {
+          console.log(res)
+          console.log('test', res.code)
+          // 发起请求
+          // wx.request({
+          //   url: `http://localhost:3001/auth?code=${res.code}`,
+          //   success: (res) => {
+          //     wx.setStorageSync('token', res.data.token)
+          //     console.log('微信', res.data.token)
+          //   }
+          // })
+          this.wxRequstPromise('http://localhost:3001/auth?code=${res.code}').then((res) => {
+            console.log(res)
+          })
+        }
+      }
+    )
+  },
+  // 异步逻辑转promise的模板代码
+  wxRequstPromise(url) {
+    return new Promise((resolve, reject) => {
+      wx.request({
+        url,
+        success: (res) => {resolve(res)},
+        fail: (error) => {reject(error)}
+      })
+    })
+  },
   onLoad() {
+    console.log('test', this.data.needToTransfor)
     this.getMsg()
     // 页面栈
     const pageStack = getCurrentPages();

@@ -14,6 +14,7 @@ const formatNumber = n => {
   return n[1] ? n : `0${n}`
 }
 
+// esmodle 和 commonjs
 module.exports = {
   formatTime
 }

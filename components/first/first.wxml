@@ -1,0 +1,3 @@
+<!--components/first/first.wxml-->
+<h1>{{msg}}</h1>
+<button bindtap="sendMoney">发送一块钱人名币</button>
