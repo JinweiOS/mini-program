@@ -1,0 +1,8 @@
+<!--pages/form/form.wxml-->
+<text>hello</text>
+<!-- <mp-dialog title="test" show="{{true}}" bindbuttontap="tapDialogButton" buttons="{{buttons}}">
+    <view>test content</view>
+</mp-dialog>
+<demo content="哈哈哈" bindclick="handleChildEvent">
+  <div>这里是slot</div>
+</demo> -->

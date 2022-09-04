@@ -9,4 +9,6 @@
     <textarea bindinput="needToShare" value="{{msg}}" class="text-layout" placeholder="请输入剪贴板的内容" auto-focus />
   </view>
   <button bindtap="saveToServer" >添加剪贴板内容</button>
+  <button bindtap="navigatorTo">跳转至子页面</button>
+  <button bindtap="navigatorToHello">跳转至欢迎页</button>
 </view>

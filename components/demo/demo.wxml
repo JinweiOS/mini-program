@@ -1,0 +1,5 @@
+<view class="inner" >
+  {{content}}
+  <button bindtap="onTap">点击触发组件的事件</button>
+</view>
+<slot></slot>

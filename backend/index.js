@@ -7,7 +7,6 @@ const server = http.createServer((req, res) => {
   // 业务逻辑
   switch(req.url) {
     case DATA_SET: {
-    
       database.push(decodeURIComponent(req.headers.content))
       res.end(JSON.stringify({success: true, data: database}))
       break;

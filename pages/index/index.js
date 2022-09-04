@@ -1,19 +1,43 @@
 // index.js
 // 获取应用实例
-const app = getApp()
+// const app = getApp()
 
 Page({
   data: {
     msg: '',
+    needToTransfor: {
+      msg: '爱'
+    },
     tempData: []
   },
   onLoad() {
     this.getMsg()
+    // 页面栈
+    const pageStack = getCurrentPages();
+    console.log('pageStack', pageStack)
   },
   copyToboard(event) {
     const data = event.currentTarget.dataset.index
     wx.setClipboardData({
       data,
+    })
+  },
+  navigatorToHello() {
+    wx.navigateTo({
+      url: `/pages/hello/hello?name=${JSON.stringify(this.data.needToTransfor)}`,
+      success: (res) => {
+        res.eventChannel.emit('EVENT_HELLO', this.data.needToTransfor)
+      }
+    })
+  },
+  navigatorTo() {
+    // url中任然不支持中文
+    const sequelise = JSON.stringify('ppp')
+    wx.navigateTo({
+      url: `/pages/form/form?params=${sequelise}`,
+      success: (res) => {
+        res.eventChannel.emit('event_data', this.data.tempData)
+      }
     })
   },
   needToShare(event) {
