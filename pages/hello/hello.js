@@ -5,21 +5,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    // 路由参数
-    // 1 url跟上查询参数，如果有对象，用JSON序列化，并在此处反序列化
-    console.log(JSON.parse(options.name))
-    // 通过channel
-    const channel = this.getOpenerEventChannel();
-    channel.on('EVENT_HELLO', (data) => {
-      console.log(data)
-    })
   },
 
   /**

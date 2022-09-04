@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "tab-bar": "weui-miniprogram/tabbar/tabbar"
+  }
 }

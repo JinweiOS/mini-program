@@ -12,3 +12,4 @@
   <button bindtap="navigatorTo">跳转至子页面</button>
   <button bindtap="navigatorToHello">跳转至欢迎页</button>
 </view>
+<tab-bar></tab-bar>

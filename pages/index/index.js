@@ -14,7 +14,6 @@ Page({
     this.getMsg()
     // 页面栈
     const pageStack = getCurrentPages();
-    console.log('pageStack', pageStack)
   },
   copyToboard(event) {
     const data = event.currentTarget.dataset.index
@@ -41,7 +40,6 @@ Page({
     })
   },
   needToShare(event) {
-    console.log(event.detail);
     // 把需要添加到剪贴板的内容后端本地变量
     this.setData({
       msg: event.detail.value
@@ -56,7 +54,6 @@ Page({
         content: encodeURIComponent(this.data.msg)
       },
       success: (result) => {
-        console.log(result.data)
         this.setData({
           tempData: result.data.data,
           msg: ''
@@ -77,7 +74,6 @@ Page({
         content: this.data.msg
       },
       success: (result) => {
-        console.log(result.data)
         this.setData({
           tempData: result.data.data
         })
